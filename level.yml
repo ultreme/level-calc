@@ -1,0 +1,13 @@
+level:
+  name: calc
+  version: 1.0
+  author: Pathwar team
+  passphrases: 1
+  description: So, you know Tetris? Show me.
+  rootable: false
+  cpu_shares: 1/10
+  memory_limit: 16M
+  tags:
+    - flask, python
+  redump: 600
+  lang: en
