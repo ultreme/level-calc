@@ -1,6 +1,6 @@
 NAME =	example
 
-all:	run
+all:	build
 
 build:
 	fig build
