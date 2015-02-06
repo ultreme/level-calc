@@ -1,0 +1,6 @@
+level:
+  build: .
+  ports:
+    - "4042:8080"
+  volumes:
+    - app:/usr/src/app

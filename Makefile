@@ -1,12 +1,14 @@
 NAME =	level
+FIG ?= fig.yml
+
 
 all:	build
 
 build:
-	fig build
+	fig -f $(FIG) build
 
 shell:	build
-	fig run $(NAME) /bin/bash
+	fig -f $(FIG) run $(NAME) /bin/bash
 
 up:	build
-	fig up
+	fig -f $(FIG) up
