@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{# set page_title = 'Coucou' #}
+{% set square_size = 250 %}
+
+{% block title %}{{ images | length }} trucs{% endblock %}
+{% block subtitle %}au hasard{% endblock %}
+
+{% block content %}
+  <div class="row">
+    {% for image in images %}
+
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 rotate-random">
+      <a href="{{ image.url }}" class="thumbnail"
+         width="{{square_size}}" height="{{square_size}}"
+         {% if image.external %} target="_blank"{% endif %}>
+        <div class="caption-wrapper">
+          <p class="caption">
+            {{ image.title }}
+          </p>
+        </div>
+        <img src="{{image.img}}"
+             class="img-responsive"
+             width="{{square_size}}" height="{{square_size}}" />
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+  <p class="well">Et plein d'autres..</p>
+{% endblock %}
