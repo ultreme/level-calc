@@ -81,10 +81,25 @@ app.jinja_env.globals.update(
     mot_debile_qui_se_mange=mot_debile_qui_se_mange,
 )
 
+def get_hackz():
+    hackz_list = []
+    hackz_list.append({
+        'title': '3615 Cryptage',
+        'img': '/static/img/hackz/3615cryptage/logo.jpg',
+        'url': url_for('hackz_3615cryptage'),
+    })
+    random.shuffle(hackz_list)
+    return hackz_list
+
 # Routes
 @app.route('/')
 def home():
-    return render_template('home.html')
+    images = get_hackz()
+    return render_template('home.html', images=images)
+
+@app.route('/hackz/3615cryptage')
+def hackz_3615cryptage():
+    return render_template('hackz/3615cryptage.html')
 
 # Main
 if __name__ == "__main__":
