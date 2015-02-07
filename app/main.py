@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asd'
 app.config['DEBUG'] = True
 
+
 # Misc stuff
 def random_caps(s):
     r = ''
@@ -93,6 +94,7 @@ app.jinja_env.globals.update(
     mot_pascool=mot_pascool,
 )
 
+# Helpers
 def get_hackz():
     hackz_list = []
     hackz_list.append({
@@ -108,10 +110,120 @@ def get_hackz():
     random.shuffle(hackz_list)
     return hackz_list
 
+def get_copaings():
+    copaings_list = []
+    copaings_list.append({
+        'title': 'm1ch3l',
+        'description': 'm1ch3l est cool, m1ch3l aime les gommes.',
+        'img': '/static/img/copaings/m1ch3l.jpg',
+        'links': [
+            {'url': 'http://m1ch3l.biz/', 'title': 'Le site de m1ch3l'},
+            {'url': 'http://radio.m1ch3l.biz/', 'title': 'Radio m1ch3l'},
+        ],
+    })
+    copaings_list.append({
+        'title': 'salut c\'est cool',
+        'img': '/static/img/copaings/scc.jpg',
+        'description': '<3<3<3<3',
+        'links': [
+            {'url': 'http://salutcestcool.com',
+             'title': 'Le site de salut c\'est cool'},
+            {'url': 'http://facebook.com/salutcestcool',
+             'title': 'Facebook'},
+        ],
+    })
+    copaings_list.append({
+        'title': 'Gars Cool',
+        'img': '/static/img/copaings/garscool.jpg',
+        'description': 'cool',
+        'links': [
+            {'url': 'https://www.facebook.com/garscool',
+             'title': 'Facebook'},
+            {'url': 'http://garscool.tumblr.com',
+             'title': 'Tumblr'},
+            {'url': 'https://twitter.com/garscool',
+             'title': 'Twitter'},
+        ],
+    })
+    copaings_list.append({
+        'title': 'C\'est moi',
+        'img': '/static/img/copaings/cestmoi.jpg',
+        'description': 'hihi',
+        'links': [
+            {'url': 'https://www.facebook.com/cestmoi42',
+             'title': 'Facebook de C\'est moi'}
+        ],
+    })
+    copaings_list.append({
+        'title': 'Furrtek',
+        'img': '/static/img/copaings/furrtek.png',
+        'description': 'Avant on se faisait electrocuter, maintenant on peut se faire electroniquer',
+        'links': [
+            {'url': 'http://furrtek.free.fr',
+             'title': 'Site officiel'},
+            {'url': 'https://www.youtube.com/user/furrtek/videos',
+             'title': 'Youtube'}
+        ],
+    })
+    copaings_list.append({
+        'title': 'sbrk.org',
+        'img': '/static/img/copaings/sbrk.jpg',
+        'description': mot_cool(),
+        'links': [
+            {'url': 'http://sbrk.org',
+             'title': 'Sbrk'},
+            {'url': 'http://mxs.sbrk.org',
+             'title': 'mxs'},
+        ]
+    })
+    copaings_list.append({
+        'title': 'Le club de Gym',
+        'img': '/static/img/copaings/club.jpg',
+        'description': 'Collectif d\'artistes et de muscles',
+        'links': [
+            {'url': 'https://www.facebook.com/legymclub',
+             'title': 'Facebook'}
+        ]
+    })
+    copaings_list.append({
+        'title': 'Leonard Gordon Alain Souchon de la Gomme du Camembert',
+        'img': '/static/img/copaings/leonard.jpg',
+        'description': 'Waf',
+        'links': [
+            {'url': 'https://www.facebook.com/leonard.gomme',
+             'title': 'Facebook'},
+            {'url': 'http://leonard-camembert.tumblr.com',
+             'title': 'Tumblr'},
+        ]
+    })
+    copaings_list.append({
+        'title': 'Je suis pas un monstre !',
+        'img': '/static/img/copaings/sassou-behance.jpg',
+        'description': 'par Sassou Youpi',
+        'links': [
+            {'url': 'https://www.behance.net/sassouyoupi', 'title': 'Behance'}
+        ]
+    })
+    copaings_list.append({
+        'title': 'Vadim',
+        'img': '/static/img/copaings/apokorunta.png',
+        'description': '',
+        'links': [
+            {'url': 'http://apokorunta.free.fr/blog/index.php',
+             'title': 'Apokorunta'},
+        ]
+    })
+    for copaing in copaings_list:
+        if 'img' not in copaing:
+            copaing['img'] = '/static/img/img-not-found-400.png'
+    random.shuffle(copaings_list)
+    return copaings_list
+
 # Routes
 @app.route('/')
 def home():
     images = get_hackz()
+    images += get_copaings()
     return render_template('home.html', images=images)
 
 @app.route('/hackz/3615cryptage')
@@ -128,6 +240,9 @@ def hackz():
     return render_template('hackz.html', hackz=get_hackz(),
                            hackzers=hackzers)
 
+@app.route('/copaings')
+def copaings():
+    return render_template('copaings.html', copaings=get_copaings())
 
 # Main
 if __name__ == "__main__":
