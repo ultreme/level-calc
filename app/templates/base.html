@@ -20,8 +20,8 @@
     <link rel="icon" type="image/png" href="{{ '/static/img/logo-300.png' }}" />
     <meta http-equiv="refresh" content="3600;URL={{ current_url }}" />
 
-    <link href="/static/css/base.css" rel="stylesheet" data-no-instant />
-
+    <link href="/static/css/base.css" rel="stylesheet" data-no-instant /
+    {% block extra_css %}{% endblock %}
   </head>
 
   <body>
@@ -95,6 +95,7 @@
     </div>
 
     <script type="text/javascript" src="/static/js/base.js" data-no-instant></script>
+    {% block extra_js %}{% endblock %}
 
   </body>
 </html>

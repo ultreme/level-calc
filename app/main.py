@@ -88,6 +88,11 @@ def get_hackz():
         'img': '/static/img/hackz/3615cryptage/logo.jpg',
         'url': url_for('hackz_3615cryptage'),
     })
+    hackz_list.append({
+        'title': 'Calculatrice.exe',
+        'img': '/static/img/hackz/calculatrice/logo.jpg',
+        'url': url_for('hackz_calculatrice'),
+    })
     random.shuffle(hackz_list)
     return hackz_list
 
@@ -100,6 +105,10 @@ def home():
 @app.route('/hackz/3615cryptage')
 def hackz_3615cryptage():
     return render_template('hackz/3615cryptage.html')
+
+@app.route('/hackz/calculatrice.exe')
+def hackz_calculatrice():
+    return render_template('hackz/calculatrice.html')
 
 # Main
 if __name__ == "__main__":
