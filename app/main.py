@@ -73,12 +73,24 @@ def mot_debile_qui_se_mange():
     ]
     return mots_debiles[int(random.random() * len(mots_debiles))]
 
+def mot_cool():
+    mots_cools = [
+        'cool', 'sympa', 'gentil', 'genial', 'excellent', 'superbe', 'super',
+        'vraiment tres bien', 'bien', 'qui en a dans le pantalon', 'top',
+    ]
+    return mots_cools[int(random.random() * len(mots_cools))]
+
+def mot_pascool():
+    return 'pas tres ' + mot_cool()
+
 app.jinja_env.globals.update(
     yomyman_style=yomyman_style,
     logo_alternate=logo_alternate,
     mot_du_jour=mot_du_jour,
     megahertz=megahertz,
     mot_debile_qui_se_mange=mot_debile_qui_se_mange,
+    mot_cool=mot_cool,
+    mot_pascool=mot_pascool,
 )
 
 def get_hackz():
@@ -109,6 +121,13 @@ def hackz_3615cryptage():
 @app.route('/hackz/calculatrice.exe')
 def hackz_calculatrice():
     return render_template('hackz/calculatrice.html')
+
+@app.route('/hackz')
+def hackz():
+    hackzers = []
+    return render_template('hackz.html', hackz=get_hackz(),
+                           hackzers=hackzers)
+
 
 # Main
 if __name__ == "__main__":
